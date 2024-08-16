@@ -7,6 +7,9 @@ ENV REDIS_VERSION=6.2.6
 # 设置 Redis 配置文件路径
 COPY ./redis.conf /usr/local/etc/redis/redis.conf
 
+# 替换默认的配置文件
+RUN mv /usr/local/etc/redis/redis.conf /usr/local/etc/redis/redis.conf.default \
+    && ln -sf /usr/local/etc/redis/redis.conf /usr/local/etc/redis/redis.conf
 
 # 暴露 Redis 默认端口
 EXPOSE 6379
